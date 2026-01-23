@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+    float force, distance, strength;
+
+    // Input force and distance
+    printf("Enter force: ");
+    scanf("%f", &force);
+
+    printf("Enter distance: ");
+    scanf("%f", &distance);
+
+    // Calculate strength
+    strength = force * distance;
+
+    // Output result
+    printf("Strength = %.2f\n", strength);
+
+    return 0;
+}
