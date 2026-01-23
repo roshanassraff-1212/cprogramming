@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n, new_n, i;
+    int *emp;
+
+    // Initial number of employees
+    printf("Enter initial number of employees: ");
+    scanf("%d", &n);
+
+    // Allocate memory using calloc
+    emp = (int *)calloc(n, sizeof(int));
+
+    if (emp == NULL) {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
+    // Display initial values (should be zero)
+    printf("\nInitial Employee IDs:\n");
+    for (i = 0; i < n; i++) {
+        printf("Employee %d ID: %d\n", i + 1, emp[i]);
+    }
+
+    // Increase number of employees
+    printf("\nEnter new total number of employees: ");
+    scanf("%d", &new_n);
+
+    // Reallocate memory
+    emp = (int *)realloc(emp, new_n * sizeof(int));
+
+    if (emp == NULL) {
+        printf("Memory reallocation failed!\n");
+        return 1;
+    }
+
+    // Accept employee IDs from user
+    printf("\nEnter employee IDs:\n");
+    for (i = 0; i < new_n; i++) {
+        printf("Employee %d ID: ", i + 1);
+        scanf("%d", &emp[i]);
+    }
+
+    // Display updated list
+    printf("\nUpdated Employee ID List:\n");
+    for (i = 0; i < new_n; i++) {
+        printf("Employee %d ID: %d\n", i + 1, emp[i]);
+    }
+
+    // Free allocated memory
+    free(emp);
+
+    return 0;
+}
