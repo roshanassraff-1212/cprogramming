@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int main() {
+    int n, i;
+    float prices[100], total = 0.0;
+    float *ptr;
+
+    printf("Enter number of items purchased: ");
+    scanf("%d", &n);
+
+    ptr = prices;   // pointer points to first element
+
+    printf("Enter prices of %d items:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%f", ptr);   // no prices[i]
+        ptr++;              // pointer increment
+    }
+
+    ptr = prices;   // reset pointer to start
+
+    for (i = 0; i < n; i++) {
+        total += *ptr;      // access value using pointer
+        ptr++;              // pointer increment
+    }
+
+    printf("Total bill amount = %.2f\n", total);
+
+    return 0;
+}
