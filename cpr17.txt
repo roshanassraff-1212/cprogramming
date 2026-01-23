@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+void allocate(int **pp) {
+    static int y = 50;
+    *pp = &y;   // change where p points
+}
+
+int main() {
+    int x = 10;
+    int *p = &x;
+    int **pp = &p;
+
+    allocate(pp);
+
+    printf("%d\n", *p);   // 50
+    return 0;
+}

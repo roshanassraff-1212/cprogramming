@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+void update(int **pp) {
+    **pp = 100;   // change the value
+}
+
+int main() {
+    int x = 10;
+    int *p = &x;
+    int **pp = &p;
+
+    update(pp);
+
+    printf("x = %d\n", x);   // 100
+    return 0;
+}
