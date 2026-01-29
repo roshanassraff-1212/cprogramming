@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n, i;
+    float *price, total = 0;
+
+    // Read number of items
+    scanf("%d", &n);
+
+    // Allocate memory using calloc (initialized to 0)
+    price = (float *)calloc(n, sizeof(float));
+
+    // Read prices
+    for (i = 0; i < n; i++) {
+        scanf("%f", &price[i]);
+        total += price[i];
+    }
+
+    // Print total bill
+    printf("%.2f", total);
+
+    // Free allocated memory
+    free(price);
+
+    return 0;
+}

@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int n1, n2, i;
+    float *salary;
+    float total = 0.0;
+
+    // Initial number of employees
+    scanf("%d", &n1);
+
+    // Allocate memory using malloc
+    salary = (float *)malloc(n1 * sizeof(float));
+
+    // Read initial salaries
+    for (i = 0; i < n1; i++) {
+        scanf("%f", &salary[i]);
+        total += salary[i];
+    }
+
+    // Number of new employees
+    scanf("%d", &n2);
+
+    // Reallocate memory to add new employees
+    salary = (float *)realloc(salary, (n1 + n2) * sizeof(float));
+
+    // Read new salaries
+    for (i = n1; i < n1 + n2; i++) {
+        scanf("%f", &salary[i]);
+        total += salary[i];
+    }
+
+    // Print total salary expense
+    printf("%.2f", total);
+
+    // Free memory
+    free(salary);
+
+    return 0;
+}
