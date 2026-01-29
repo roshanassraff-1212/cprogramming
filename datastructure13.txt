@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Nested structure for contact details
+struct Contact {
+    long long phone;
+};
+
+// Structure for bank customer (linked list node)
+struct Customer {
+    int accNo;
+    struct Contact contact;
+    struct Customer *next;
+};
+
+int main() {
+    // Create first customer
+    struct Customer *cust1 = (struct Customer *)malloc(sizeof(struct Customer));
+    cust1->accNo = 101;
+    cust1->contact.phone = 9876543210;
+    cust1->next = NULL;
+
+    // Create second customer
+    struct Customer *cust2 = (struct Customer *)malloc(sizeof(struct Customer));
+    cust2->accNo = 102;
+    cust2->contact.phone = 9123456789;
+    cust2->next = NULL;
+
+    // Link customers
+    cust1->next = cust2;
+
+    // Display customer list
+    struct Customer *temp = cust1;
+    while (temp != NULL) {
+        printf("%d - %lld -> ", temp->accNo, temp->contact.phone);
+        temp = temp->next;
+    }
+    printf("NULL");
+
+    return 0;
+}

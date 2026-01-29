@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Nested structure for student details
+struct Student {
+    char name[50];
+    char dept[50];
+};
+
+// Node structure for linked list
+struct Node {
+    int roll;
+    struct Student s;
+    struct Node *next;
+};
+
+// Function to create a new node
+struct Node* createNode(int roll, char name[], char dept[]) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->roll = roll;
+    strcpy(newNode->s.name, name);
+    strcpy(newNode->s.dept, dept);
+    newNode->next = NULL;
+    return newNode;
+}
+
+// Function to display the linked list
+void display(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d %s %s -> ", temp->roll, temp->s.name, temp->s.dept);
+        temp = temp->next;
+    }
+    printf("NULL");
+}
+
+int main() {
+    struct Node *head = NULL, *second = NULL;
+
+    // Creating nodes
+    head = createNode(1, "Arun", "CSE");
+    second = createNode(2, "Meena", "IT");
+
+    // Linking nodes
+    head->next = second;
+
+    // Display student records
+    display(head);
+
+    return 0;
+}
