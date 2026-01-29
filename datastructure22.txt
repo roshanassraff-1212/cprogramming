@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Nested structure for product details
+struct Product {
+    char name[20];
+    int price;
+};
+
+// Structure for order (linked list node)
+struct Order {
+    int orderID;
+    struct Product product;
+    char status[15];
+    struct Order *next;
+};
+
+int main() {
+    // Create first order
+    struct Order *order1 = (struct Order *)malloc(sizeof(struct Order));
+    order1->orderID = 201;
+    strcpy(order1->product.name, "Mouse");
+    order1->product.price = 500;
+    strcpy(order1->status, "Delivered");
+    order1->next = NULL;
+
+    // Create second order
+    struct Order *order2 = (struct Order *)malloc(sizeof(struct Order));
+    order2->orderID = 202;
+    strcpy(order2->product.name, "Keyboard");
+    order2->product.price = 1500;
+    strcpy(order2->status, "Pending");
+    order2->next = NULL;
+
+    // Link the orders
+    order1->next = order2;
+
+    // Display order list
+    struct Order *temp = order1;
+    while (temp != NULL) {
+        printf("%d %s %d %s -> ",
+               temp->orderID,
+               temp->product.name,
+               temp->product.price,
+               temp->status);
+        temp = temp->next;
+    }
+    printf("NULL");
+
+    return 0;
+}
