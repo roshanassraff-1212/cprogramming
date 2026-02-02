@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX 5  // Define the maximum size of the stack
+
+// Stack structure
+struct Stack {
+    int items[MAX];
+    int top;
+};
+
+// Function to initialize the stack
+void initStack(struct Stack* stack) {
+    stack->top = -1;  // Set top to -1, indicating the stack is empty
+}
+
+// Function to check if the stack is empty
+int isEmpty(struct Stack* stack) {
+    return stack->top == -1;
+}
+
+// Function to pop an element from the stack
+int pop(struct Stack* stack) {
+    if (!isEmpty(stack)) {
+        return stack->items[stack->top--];  // Return and remove the top element
+    }
+    return -1;  // Return -1 for underflow (when stack is empty)
+}
+
+int main() {
+    struct Stack stack;
+    initStack(&stack);
+
+    // Push some elements to the stack
+    stack.items[++stack.top] = 10;
+    stack.items[++stack.top] = 20;
+    stack.items[++stack.top] = 30;
+
+    // Pop elements from the stack
+    pop(&stack);
+    pop(&stack);
+    pop(&stack);
+    pop(&stack);  // This will return -1 (underflow), no output
+
+    return 0;
+}
